@@ -1,45 +1,52 @@
-# rasguard
-# طراحی و پیاده‌سازی فایروال سخت‌افزاری مبتنی بر W5500 و ماژول Raspberry Pi 3 برای مقابله با حملات DDoS
+RasGuard
+Design and Implementation of a Hardware Firewall Based on Raspberry Pi 3 to Mitigate DDoS Attacks
+Introduction
 
-## مقدمه  
-با رشد روزافزون فناوری و گسترش شبکه‌های اینترنتی، تهدیدات سایبری نیز افزایش یافته است. یکی از چالش‌های اساسی در این حوزه، **حملات منع سرویس توزیع‌شده (DDoS)** است که می‌تواند عملکرد شبکه‌ها را مختل کرده و موجب کاهش کارایی سرویس‌ها شود.  
-این پروژه بر طراحی و پیاده‌سازی یک **فایروال سخت‌افزاری کارآمد** مبتنی بر **Raspberry Pi 3** و **ماژول W5500** تمرکز دارد تا ترافیک مخرب را شناسایی و مسدود کند.  
+With the rapid advancement of technology and the expansion of internet networks, cyber threats have significantly increased. One of the major challenges in this field is Distributed Denial of Service (DDoS) attacks, which can disrupt network operations and degrade service performance.
+This project focuses on designing and implementing an efficient hardware firewall based on Raspberry Pi 3, capable of detecting and blocking malicious traffic.
+Project Objectives
 
-## اهداف پروژه  
-- طراحی فایروال سخت‌افزاری قابل اجرا روی **Raspberry Pi 3**  
-- شناسایی و تحلیل ترافیک شبکه برای تشخیص و مقابله با **حملات DDoS**  
-- بهینه‌سازی پردازش درخواست‌های شبکه برای افزایش سرعت عملکرد  
-- پیاده‌سازی سیستم هشداردهی جهت اطلاع‌رسانی درباره احتمال وقوع حملات  
-- استفاده از الگوریتم‌های یادگیری ماشین و ابزارهای تحلیل ترافیک مانند **Suricata**  
+    Designing a hardware-based firewall that runs on Raspberry Pi 3
+    Monitoring and analyzing network traffic to detect and mitigate DDoS attacks
+    Optimizing network request processing to improve performance
+    Implementing an alert system to notify administrators of potential attacks
 
-## سخت‌افزار و نرم‌افزار مورد نیاز  
+Required Hardware and Software
+Hardware
 
-### سخت‌افزار  
-- **Raspberry Pi 3 Model B+**  
-- **ماژول W5500 Ethernet**  
-- **کارت حافظه microSD (حداقل 16GB)**  
-- **آداپتور 5V/2.5A**  
+    Raspberry Pi 3 Model B+
+    microSD Card (Minimum 16GB)
+    5V/2.5A Power Adapter
 
-### نرم‌افزار  
-- **Raspberry Pi OS (Lite)**  
-- **nftables و iptables** برای مدیریت و فیلتر کردن ترافیک شبکه  
-- **Suricata** برای تحلیل پیشرفته ترافیک و تشخیص تهدیدات امنیتی  
-- **tcpdump و netstat** برای مانیتورینگ فعالیت‌های شبکه  
-- **Python و Bash** برای توسعه اسکریپت‌های پردازش و امنیت شبکه  
+Software
 
-## مراحل اجرای پروژه  
-1. **نصب و پیکربندی سیستم‌عامل**: نصب **Raspberry Pi OS Lite** روی کارت حافظه و بهینه‌سازی تنظیمات شبکه.  
-2. **راه‌اندازی ماژول W5500**: اتصال ماژول به **Raspberry Pi** از طریق رابط **SPI** و تنظیم به عنوان **اینترفیس ثانویه** برای پردازش ترافیک.  
-3. **پیاده‌سازی فایروال سخت‌افزاری**: پیکربندی **nftables** جهت مدیریت و فیلتر کردن بسته‌های شبکه.  
-4. **ایجاد سیستم نظارت و هشداردهی**: استفاده از **Suricata و tcpdump** برای شناسایی تهدیدات و ارسال هشدار به مدیر شبکه.  
-5. **ارزیابی عملکرد و تست نفوذ**: شبیه‌سازی حملات و ارزیابی کارایی فایروال برای بهینه‌سازی تنظیمات امنیتی.  
+    Raspberry Pi OS (Lite)
+    nftables & iptables for network traffic filtering and firewall configuration
+    tcpdump & netstat for real-time network activity monitoring
+    Python & Bash for developing security scripts and automation
 
-## نتایج و کاربردهای عملی  
-- افزایش امنیت شبکه‌های **کوچک و متوسط** با هزینه پایین و کارایی بالا  
-- کاهش اثرات **حملات DDoS** در مراکز داده و ارائه‌دهندگان خدمات ابری  
-- استفاده در محیط‌های **دانشگاهی و تحقیقاتی** برای مطالعات امنیت سایبری  
-- حفاظت از شبکه‌های **IoT** در برابر تهدیدات سایبری و حملات اینترنتی  
+Implementation Steps
 
-## نتیجه‌گیری  
-این پروژه به‌عنوان یک راهکار کم‌هزینه و کارآمد، قابلیت **شناسایی و جلوگیری از حملات DDoS** را دارد.  
-پیاده‌سازی این سیستم می‌تواند امنیت شبکه‌های **کوچک و متوسط** را بهبود بخشد و در توسعه راهکارهای آینده مورد استفاده قرار گیرد.  
+    Installing and Configuring the OS: Setting up Raspberry Pi OS on a microSD card and optimizing network settings.
+    Implementing the Hardware Firewall: Configuring nftables for efficient packet filtering and traffic control.
+    Developing a Monitoring & Alert System: Using tcpdump to detect potential threats and sending alerts to administrators.
+    Performance Evaluation and Penetration Testing: Simulating cyber-attacks to assess firewall efficiency and optimize security configurations.
+
+Results and Practical Applications
+
+    Enhanced security for small and medium-sized networks at a low cost with high efficiency
+    Mitigation of DDoS attacks for data centers and cloud service providers
+    Academic and research applications for cybersecurity studies and network security training
+    Protection of IoT networks from cyber threats and internet-based attacks
+
+Future Improvements
+
+    Implementing AI-based traffic analysis for more advanced threat detection
+    Adding a web-based dashboard for easier firewall configuration and monitoring
+    Integrating Intrusion Detection Systems (IDS) for enhanced security
+    Expanding compatibility to support newer Raspberry Pi models and edge devices
+
+Conclusion
+
+This project presents a cost-effective and efficient solution for detecting and preventing DDoS attacks.
+By implementing this system, the security of small and medium-sized networks can be significantly improved, making it a valuable tool for research, enterprise, and IoT security applications.
