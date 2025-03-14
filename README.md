@@ -1,77 +1,87 @@
-# RasGuard: Hardware Firewall on Raspberry Pi 3 to Mitigate DDoS Attacks
+# RasGuard: A Layer 2 Firewall for Detecting and Mitigating DDoS Attacks on Raspberry Pi
 
 ## Introduction
-With the rapid advancement of technology and the expansion of internet networks, cyber threats have significantly increased. One of the major challenges in this field is **Distributed Denial of Service (DDoS) attacks**, which can disrupt network operations and degrade service performance.  
+In today's interconnected world, **Distributed Denial of Service (DDoS)** attacks pose a significant threat to network stability and service availability. These attacks overwhelm systems with malicious traffic, leading to downtime and service degradation. 
 
-This project focuses on **designing and implementing an efficient hardware firewall** based on Raspberry Pi 3, capable of detecting and blocking malicious traffic.
+This project focuses on building a **Layer 2 firewall** using a **Raspberry Pi** to detect and mitigate specific types of **TCP-based DDoS attacks** (SYN Flood, ACK Flood, TCP Connection Flood, and FIN Flood). The firewall is designed to analyze traffic between two network interfaces (ports) and block malicious IP addresses for a set period, providing a robust defense against common DDoS attack methods.
 
 ---
 
 ## Project Objectives
-- ✅ Designing a **hardware-based firewall** that runs on Raspberry Pi 3  
-- ✅ Monitoring and analyzing **network traffic** to detect and mitigate DDoS attacks  
-- ✅ Optimizing **network request processing** to improve performance  
-- ✅ Implementing an **alert system** to notify administrators of potential attacks  
+- ✅ **Implement a Layer 2 firewall** on a Raspberry Pi to analyze and forward packets between two network interfaces  
+- ✅ **Detect and mitigate TCP-based DDoS attacks**, specifically SYN Flood, ACK Flood, TCP Connection Flood, and FIN Flood  
+- ✅ **Automate IP blocking** for attackers based on predefined attack thresholds (e.g., blocking an IP for 5 minutes after attack detection)  
+- ✅ **Leverage Python** to monitor and analyze network traffic in real-time, utilizing libraries such as `scapy` and `NetfilterQueue`  
+- ✅ **Create a scalable solution** for real-time DDoS attack mitigation
 
 ---
 
 ## Required Hardware and Software
 
 ### 📌 Hardware
-- **Raspberry Pi 3 Model B+**
-- **microSD Card** (Minimum 16GB)
-- **5V/2.5A Power Adapter**
+- **Raspberry Pi 3 Model B+** or later  
+- **microSD Card** (Minimum 16GB, Class 10)  
+- **5V/2.5A Power Adapter**  
+- **Ethernet cables** for connecting Raspberry Pi to network interfaces  
 
 ### 🛠️ Software
-- **Raspberry Pi OS (Lite)**
-- **nftables & iptables** – Network traffic filtering and firewall configuration
-- **tcpdump & netstat** – Real-time network activity monitoring
-- **Python & Bash** – Developing security scripts and automation
+- **Raspberry Pi OS (Lite)** – Minimal OS for running firewall applications  
+- **iptables** & **nftables** – For setting up and configuring firewall rules  
+- **scapy** – Python library for crafting and analyzing network packets  
+- **NetfilterQueue** – Python library for interacting with `iptables` queueing system  
+- **Python 3.x** – For writing custom scripts to detect and mitigate DDoS attacks  
+- **tcpdump** – Network traffic analysis tool for capturing and inspecting packets  
 
 ---
 
 ## Implementation Steps
 
-1. **Installing and Configuring the OS**  
-   - Setting up Raspberry Pi OS on a microSD card  
-   - Optimizing network settings  
+1. **Setup Raspberry Pi and OS**  
+   - Install Raspberry Pi OS on a microSD card  
+   - Update system packages and optimize network settings for firewall operation  
 
-2. **Implementing the Hardware Firewall**  
-   - Configuring **nftables** for efficient packet filtering and traffic control  
+2. **Network Bridge Setup**  
+   - Configure a **Layer 2 bridge** between two network interfaces (e.g., eth0 and eth1) on the Raspberry Pi  
+   - Enable packet forwarding between interfaces and set up iptables for traffic routing  
 
-3. **Developing a Monitoring & Alert System**  
-   - Using **tcpdump** to detect potential threats  
-   - Sending **alerts to administrators**  
+3. **DDoS Attack Detection**  
+   - Implement packet analysis using **scapy** to detect **SYN Flood**, **ACK Flood**, **TCP Connection Flood**, and **FIN Flood**  
+   - Set thresholds for attack detection (e.g., more than 10 SYN packets in 1 second indicates a SYN Flood)  
+   - Develop a mechanism to **block the source IP address** for a set time after detecting a flood attack  
 
-4. **Performance Evaluation and Penetration Testing**  
-   - Simulating cyber-attacks to assess firewall efficiency  
-   - Optimizing security configurations  
+4. **Python Script for Real-Time Monitoring**  
+   - Use **NetfilterQueue** to receive and inspect packets from iptables queues  
+   - Implement attack detection logic to check for patterns indicative of DDoS attacks  
+   - Automatically block IPs involved in attacks using **iptables**  
+
+5. **Testing and Optimization**  
+   - Test the firewall by simulating various DDoS attack scenarios (e.g., using tools like `hping3` or **LOIC**)  
+   - Analyze the performance of the firewall and optimize packet inspection algorithms for better efficiency  
 
 ---
 
 ## Results and Practical Applications
 
-✅ **Enhanced security** for small and medium-sized networks at a low cost  
-✅ **Mitigation of DDoS attacks** for data centers and cloud service providers  
-✅ **Academic and research applications** for cybersecurity studies  
-✅ **Protection of IoT networks** from cyber threats  
+✅ **Real-time DDoS attack detection** and mitigation  
+✅ **Improved network security** for small to medium-sized networks  
+✅ **Cost-effective solution** based on Raspberry Pi for defending against TCP-based DDoS attacks  
+✅ **Scalable architecture** suitable for various network configurations and IoT environments  
 
 ---
 
 ## Future Improvements
-🔹 **AI-based traffic analysis** for advanced threat detection  
-🔹 **Web-based dashboard** for easier firewall configuration and monitoring  
-🔹 **Intrusion Detection Systems (IDS)** integration  
-🔹 **Support for newer Raspberry Pi models** and edge devices  
+🔹 **Advanced attack detection using AI** – Implement machine learning algorithms for more advanced and dynamic threat detection  
+🔹 **Web-based dashboard** for monitoring and configuration – A graphical interface to display attack logs, alerts, and manage firewall settings  
+🔹 **Automated attack response** – Develop a more automated system to react to specific attack patterns  
+🔹 **Support for multi-interface setups** – Expand the project to support more complex network topologies  
 
 ---
 
 ## Conclusion
-This project presents a **cost-effective and efficient solution** for detecting and preventing **DDoS attacks**.  
-By implementing this system, **network security** can be significantly improved, making it a valuable tool for **research, enterprise, and IoT security applications**.  
+This project provides a **practical solution** for protecting networks from **TCP-based DDoS attacks** by leveraging the capabilities of the Raspberry Pi. By analyzing network traffic at Layer 2 and blocking malicious IP addresses in real-time, this firewall offers an **affordable and efficient defense** against common DDoS threats.
 
 ---
 
 ## 💡 Contact & Contributions
-🔹 **Contributions are welcome!** Feel free to open a pull request or submit issues.  
-🔹 If you have suggestions or improvements, let’s collaborate!  
+🔹 **Contributions are welcome!** Feel free to open a pull request, report issues, or suggest improvements.  
+🔹 For any questions or collaboration, feel free to reach out! Let's make this project better together.  
