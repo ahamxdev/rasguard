@@ -1,4 +1,4 @@
-# RasGuard: A Layer 2 Firewall for Detecting and Mitigating DDoS Attacks on Raspberry Pi
+# RasGuard: A Layer 3 Firewall for Detecting and Mitigating DDoS Attacks on Raspberry Pi
 
 ## Introduction
 In today's interconnected world, **Distributed Denial of Service (DDoS)** attacks pose a significant threat to network stability and service availability. These attacks overwhelm systems with malicious traffic, leading to downtime and service degradation. 
