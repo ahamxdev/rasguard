@@ -4,7 +4,6 @@ import subprocess
 import threading
 import time
 
-# تنظیمات تشخیص حملات
 SYN_LIMIT = 10
 ACK_LIMIT = 10
 FIN_LIMIT = 10
@@ -14,7 +13,7 @@ BLOCK_TIME = 300
 ip_requests = {}
 
 def block_ip(ip):
-    """بلاک کردن آی‌پی مهاجم"""
+    """Block attacker ip"""
     print(f"Blocking IP: {ip} for {BLOCK_TIME} seconds")
     subprocess.call(['sudo', 'iptables', '-I', 'INPUT', '-s', ip, '-j', 'DROP'])
     time.sleep(BLOCK_TIME)
@@ -22,7 +21,7 @@ def block_ip(ip):
     print(f"Unblocking IP: {ip}")
 
 def process_packet(packet):
-    """پردازش پکت‌های ورودی از NFQUEUE"""
+    """Processing input packets NFQUEUE"""
     scapy_pkt = IP(packet.get_payload())
     if scapy_pkt.haslayer(IP) and scapy_pkt.haslayer(TCP):
         ip_src = scapy_pkt[IP].src
@@ -37,7 +36,7 @@ def process_packet(packet):
             ip_requests[ip_src]["ACK"] += 1
         elif flags == 1:  # FIN
             ip_requests[ip_src]["FIN"] += 1
-        elif flags == 18:  # SYN-ACK (کانکشن جدید)
+        elif flags == 18:  # SYN-ACK
             ip_requests[ip_src]["CONN"] += 1
 
         if (ip_requests[ip_src]["SYN"] > SYN_LIMIT or
@@ -49,7 +48,7 @@ def process_packet(packet):
             threading.Thread(target=block_ip, args=(ip_src,)).start()
             ip_requests[ip_src] = {"SYN": 0, "ACK": 0, "FIN": 0, "CONN": 0}
 
-    packet.accept()  # فوروارد کردن پکت بعد از بررسی
+    packet.accept()
 
 queue = NetfilterQueue()
 queue.bind(1, process_packet)
