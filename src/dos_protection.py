@@ -34,18 +34,6 @@ def block_ip(ip):
         print(f"✅ Unblocking IP: {ip}")
 
 
-def block_ip(ip):
-    """Block attacker ip"""
-    if ip not in blocked_ips:
-        print(f"Blocking IP: {ip} for {BLOCK_TIME} seconds")
-        subprocess.call(['sudo', 'iptables', '-I', 'INPUT', '-s', ip, '-j', 'DROP'])
-        blocked_ips.add(ip)
-        time.sleep(BLOCK_TIME)
-        subprocess.call(['sudo', 'iptables', '-D', 'INPUT', '-s', ip, '-j', 'DROP'])
-        blocked_ips.remove(ip)
-        print(f"Unblocking IP: {ip}")
-
-
 def process_packet(packet):
     """Processing input packets NFQUEUE"""
 
