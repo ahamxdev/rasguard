@@ -20,6 +20,7 @@ def reset_ip_requests():
         time.sleep(60)
         ip_requests.clear()
 
+
 def block_ip(ip):
     """Block attacker ip"""
 
@@ -31,6 +32,19 @@ def block_ip(ip):
         subprocess.call(['sudo', 'iptables', '-D', 'FORWARD', '-s', ip, '-j', 'DROP'])
         blocked_ips.remove(ip)
         print(f"✅ Unblocking IP: {ip}")
+
+
+def block_ip(ip):
+    """Block attacker ip"""
+    if ip not in blocked_ips:
+        print(f"Blocking IP: {ip} for {BLOCK_TIME} seconds")
+        subprocess.call(['sudo', 'iptables', '-I', 'INPUT', '-s', ip, '-j', 'DROP'])
+        blocked_ips.add(ip)
+        time.sleep(BLOCK_TIME)
+        subprocess.call(['sudo', 'iptables', '-D', 'INPUT', '-s', ip, '-j', 'DROP'])
+        blocked_ips.remove(ip)
+        print(f"Unblocking IP: {ip}")
+
 
 def process_packet(packet):
     """Processing input packets NFQUEUE"""
@@ -64,11 +78,10 @@ def process_packet(packet):
 
     packet.accept()
 
+
 def setup_iptables():
     """Setup iptables rules for NFQUEUE"""
     print("🔄 Resetting iptables rules...")
-    subprocess.call(["sudo", "iptables", "-F"])
-    subprocess.call(["sudo", "iptables", "-X"])
     subprocess.call(["sudo", "iptables", "-A", "FORWARD", "-i", "br0", "-j", "NFQUEUE", "--queue-num", "1"])
 
 
@@ -79,6 +92,7 @@ queue = NetfilterQueue()
 queue.bind(1, process_packet)
 
 print("🔍 Monitoring and forwarding packets...")
+
 try:
     queue.run()
 except KeyboardInterrupt:
