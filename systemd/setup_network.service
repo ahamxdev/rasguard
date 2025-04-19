@@ -1,0 +1,15 @@
+[Unit]
+Description=Run setup_network at Startup
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /home/ahamdev/rasguard/scripts/setup_network.sh
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=5s
+User=root
+
+[Install]
+WantedBy=multi-user.target
