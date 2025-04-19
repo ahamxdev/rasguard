@@ -11,7 +11,10 @@ CONN_LIMIT = 60
 BLOCK_TIME = 300
 
 ip_requests = {}
+<<<<<<< main
+=======
 server_ip = input("Enter server IP: ")
+>>>>>>> main
 blocked_ips = set()
 
 def reset_ip_requests():
@@ -19,7 +22,10 @@ def reset_ip_requests():
 
     while True:
         time.sleep(60)
+<<<<<<< main
+=======
         print("🔄 Resetting IP requests counter")
+>>>>>>> main
         ip_requests.clear()
 
 
@@ -69,6 +75,17 @@ def process_packet(packet):
 
     packet.accept()
 
+<<<<<<< main
+
+def setup_iptables():
+    """Setup iptables rules for NFQUEUE"""
+    print("🔄 Resetting iptables rules...")
+    subprocess.call(["sudo", "iptables", "-A", "FORWARD", "-i", "br0", "-j", "NFQUEUE", "--queue-num", "1"])
+
+
+setup_iptables()
+=======
+>>>>>>> main
 reset_thread = threading.Thread(target=reset_ip_requests, daemon=True)
 reset_thread.start()
 queue = NetfilterQueue()
@@ -81,4 +98,4 @@ try:
 except KeyboardInterrupt:
     print("\nStopping...")
     subprocess.call(["sudo", "iptables", "-F"])
-    subprocess.call(["sudo", "iptables", "-X"])
+    subprocess.call(["sudo", "iptables", "-X"]
