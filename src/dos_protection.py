@@ -74,7 +74,6 @@ def setup_iptables():
 
 
 setup_iptables()
-=======
 reset_thread = threading.Thread(target=reset_ip_requests, daemon=True)
 reset_thread.start()
 queue = NetfilterQueue()
