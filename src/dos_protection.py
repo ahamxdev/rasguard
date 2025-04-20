@@ -5,15 +5,18 @@ import threading
 import time
 from sms_server import send_sms
 
+
 SYN_LIMIT = 60
 ACK_LIMIT = 60
 FIN_LIMIT = 60
 CONN_LIMIT = 60
 BLOCK_TIME = 300
 
+
 ip_requests = {}
 server_ip = input("Enter server IP: ")
 blocked_ips = set()
+
 
 def reset_ip_requests():
     """Reset ip requests counter"""
@@ -73,12 +76,13 @@ def process_packet(packet):
 
     packet.accept()
 
+
 reset_thread = threading.Thread(target=reset_ip_requests, daemon=True)
 reset_thread.start()
 queue = NetfilterQueue()
 queue.bind(1, process_packet)
-
 print("🔍 Monitoring and forwarding packets...")
+
 
 try:
     queue.run()
