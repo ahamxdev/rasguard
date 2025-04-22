@@ -2,10 +2,10 @@ import requests
 import json
 
 
-API_KEY = "uadN9mzAekfLc4Uliwk3F25EfGCcEXH5Jq3dAfLxCwfo4LO6"
+API_KEY = "CD4o6h3CJeQoEIU52rZDs5LG6DpnfgpMtxRBgQkQFqggPksu"
 SMS_API_URL = "https://api.sms.ir/v1/send/bulk"
-LINE_NUMBER = "30004802149306"
-RECEIVEER_NUMBER = "+989354604367"
+LINE_NUMBER = "30002108000890"
+RECEIVEER_NUMBER = ["+989351935907"]
 
 
 def send_sms(message):
@@ -13,19 +13,18 @@ def send_sms(message):
 
     headers = {
         "Content-Type": "application/json",
-        "Accept": "application/json",
         "X-API-KEY": API_KEY
     }
 
     payload = {
-        "MessageText": message,
-        "Mobiles": RECEIVEER_NUMBER,
-        "lineNumber": LINE_NUMBER
+        "lineNumber": LINE_NUMBER,
+        "messageText": message,
+        "mobiles": RECEIVEER_NUMBER
     }
 
     try:
-        response = requests.post(SMS_API_URL, headers=headers, json=payload)
-        print("Full server response:", response.text)
+        response = requests.post(SMS_API_URL, json=payload, headers=headers)
+        print("Full server response:", response.json())
 
         if response.status_code == 200:
             response_data = response.json()
