@@ -2,9 +2,9 @@ import requests
 import json
 
 
-API_KEY = "CD4o6h3CJeQoEIU52rZDs5LG6DpnfgpMtxRBgQkQFqggPksu"
+API_KEY = "aZHAhXmt8wfo2wx27QH7pvBZfHyryIj3aWig90W1FXqXNTGy"
 SMS_API_URL = "https://api.sms.ir/v1/send/bulk"
-LINE_NUMBER = "30002108000890"
+LINE_NUMBER = "30002108001007"
 RECEIVEER_NUMBER = ["+989351935907"]
 
 
