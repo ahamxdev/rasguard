@@ -2,6 +2,17 @@
 
 This guide will walk you through the process of setting up the Raspberry Pi to run necessary services on boot, including installing Python dependencies, copying systemd service files, and enabling the services.
 
+## 0. Clone the Project
+
+First, clone the project repository to your Raspberry Pi using the following command:
+
+```bash
+git clone https://github.com/ahamxdev/rasguard.git
+cd rasguard
+```
+
+Make sure you navigate into the rasguard directory before proceeding with the next steps.
+
 ## 1. Install Python Dependencies
 
 Before setting up the services, you'll need to install the required Python packages that are used in the code. These packages are not included by default in Raspberry Pi OS.
