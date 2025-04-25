@@ -6,11 +6,11 @@ import time
 from sms_server import send_sms
 
 
-SYN_LIMIT = 60
-ACK_LIMIT = 60
-FIN_LIMIT = 60
-CONN_LIMIT = 60
-BLOCK_TIME = 300
+ACK_LIMIT = 10
+SYN_LIMIT = 11
+FIN_LIMIT = 11
+CONN_LIMIT = 10
+BLOCK_TIME = 100
 
 
 ip_requests = {}
@@ -22,7 +22,7 @@ def reset_ip_requests():
     """Reset ip requests counter"""
 
     while True:
-        time.sleep(60)
+        time.sleep(10)
         print("🔄 Resetting IP requests counter")
         ip_requests.clear()
 
