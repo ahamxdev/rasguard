@@ -6,9 +6,9 @@ import time
 from sms_server import send_sms
 
 
+SYN_LIMIT = 10
 ACK_LIMIT = 10
-SYN_LIMIT = 11
-FIN_LIMIT = 11
+FIN_LIMIT = 10
 CONN_LIMIT = 10
 BLOCK_TIME = 100
 
