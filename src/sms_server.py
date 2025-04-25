@@ -5,7 +5,7 @@ import json
 API_KEY = "aZHAhXmt8wfo2wx27QH7pvBZfHyryIj3aWig90W1FXqXNTGy"
 SMS_API_URL = "https://api.sms.ir/v1/send/bulk"
 LINE_NUMBER = "30002108001007"
-RECEIVEER_NUMBER = ["+989351935907"]
+RECEIVEER_NUMBER = ["+989351935907", "+989142438996"]
 
 
 def send_sms(message):
