@@ -1,0 +1,2 @@
+# Skip .history directory - not needed in the repository
+.history/
