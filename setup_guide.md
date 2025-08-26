@@ -22,13 +22,36 @@ Run the following commands to install them:
 ```bash
 # Update the system and install required packages
 sudo apt update
-sudo apt install libnetfilter-queue-dev python3-pip -y
-
-# Install Python packages
-sudo pip3 install NetfilterQueue scapy
+sudo apt install -y \
+    build-essential \
+    python3-dev \
+    libnetfilter-queue-dev \
+    libnfnetlink-dev \
+    python3-pip
 ```
 
-## 2. Systemd Services Explanation
+## 2. Create and Activate Virtual Environment
+
+It is recommended to use a virtual environment to keep dependencies isolated.  
+Create and activate a virtual environment with:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+## 3. Install Python Dependencies
+
+Install the Python packages required for this project.  
+All dependencies are listed in the `requirements.txt` file:
+
+```bash
+pip install -r requirements.txt
+```
+
+## 4. Systemd Services Explanation
 
 The **systemd services** are responsible for automatically running your scripts after boot. These services ensure that the necessary network configurations, packet monitoring, and firewall rules are applied on startup.
 
