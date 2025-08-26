@@ -92,7 +92,7 @@ sudo cp systemd/*.service /etc/systemd/system/
 > In each `.service` file, there's a line like the one below:
 
 ```ini
-ExecStart=/bin/bash /home/ahamdev/rasguard/scripts/*.sh
+ExecStart=/bin/bash /home/ahamxdev/rasguard/scripts/*.sh
 If your username is pi and your project is located at /home/pi/rasguard/, you should modify the line as follows:
 ExecStart=/bin/bash /home/pi/rasguard/scripts/*.sh
 ```
