@@ -147,5 +147,5 @@ Run the following command to reboot:
 
 ```bash
 cd src/
-‍‍‍sudo python3 dos_protection.py
+sudo ../venv/bin/python dos_protection.py
 ‍‍‍‍‍‍‍‍‍‍‍‍‍```
