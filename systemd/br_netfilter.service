@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash /home/ahamdev/rasguard/scripts/br_netfilter.sh
+ExecStart=/bin/bash /home/ahamxdev/rasguard/scripts/br_netfilter.sh
 RemainAfterExit=yes
 Restart=on-failure
 RestartSec=5s

@@ -27,7 +27,9 @@ sudo apt install -y \
     python3-dev \
     libnetfilter-queue-dev \
     libnfnetlink-dev \
-    python3-pip
+    python3-pip \
+    iptables \
+    bridge-utils
 ```
 
 ## 2. Create and Activate Virtual Environment
@@ -80,24 +82,24 @@ sudo ip route add default via 192.168.1.1 dev wlan0 metric 1
 
 ---
 
-## Copying Service Files
+## 5. Copying Service Files
 
 To copy the service files to your Raspberry Pi, use the following command:
 
 ```bash
-sudo cp systemd_services/*.service /etc/systemd/system/
+sudo cp systemd/*.service /etc/systemd/system/
 ```
 
 > **Note:**  
 > In each `.service` file, there's a line like the one below:
 
 ```ini
-ExecStart=/bin/bash /home/ahamdev/rasguard/scripts/*.sh
+ExecStart=/bin/bash /home/ahamxdev/rasguard/scripts/*.sh
 If your username is pi and your project is located at /home/pi/rasguard/, you should modify the line as follows:
 ExecStart=/bin/bash /home/pi/rasguard/scripts/*.sh
 ```
 
-## Enable the services
+## 6. Enable the services
 
 This step ensures that the services will automatically start after the Raspberry Pi boots.
 
@@ -108,7 +110,7 @@ sudo systemctl enable setup_network.service
 sudo systemctl enable br_netfilter.service
 ```
 
-## Start the services immediately
+## 7. Start the services immediately
 
 This will start the services right away, without having to reboot the Raspberry Pi.
 
@@ -119,7 +121,7 @@ sudo systemctl start setup_network.service
 sudo systemctl start br_netfilter.service
 ```
 
-## Checking the Service Status
+## 8. Checking the Service Status
 
 To verify that your services are running correctly, use the following commands:
 
@@ -130,18 +132,20 @@ sudo systemctl status setup_network.service
 sudo systemctl status br_netfilter.service
 ```
 
-## 3. Reboot and Run the Application
+## 9. Reboot and Run the Application
 
 After completing all setup steps and enabling the required services, it's recommended to reboot your Raspberry Pi to ensure all configurations and services are applied properly.
 
 Once the system has rebooted, navigate to the src directory where your main Python script is located, and run the DoS protection script:
 ```bash
-cd /home/your-username/rasguard/src
+sudo reboot
+cd /home/your-username/rasguard/
+sudo source venv/bin/activate
 ```
 
 Run the following command to reboot:
 
 ```bash
-sudo reboot
+cd src/
 ‍‍‍sudo python3 dos_protection.py
 ‍‍‍‍‍‍‍‍‍‍‍‍‍```
