@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash /home/ahamdev/rasguard/scripts/packet_queue.sh
+ExecStart=/bin/bash /home/ahamxdev/rasguard/scripts/packet_queue.sh
 RemainAfterExit=yes
 Restart=on-failure
 RestartSec=5s
