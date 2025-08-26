@@ -85,7 +85,7 @@ sudo ip route add default via 192.168.1.1 dev wlan0 metric 1
 To copy the service files to your Raspberry Pi, use the following command:
 
 ```bash
-sudo cp systemd_services/*.service /etc/systemd/system/
+sudo cp systemd/*.service /etc/systemd/system/
 ```
 
 > **Note:**  
