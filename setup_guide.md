@@ -27,7 +27,9 @@ sudo apt install -y \
     python3-dev \
     libnetfilter-queue-dev \
     libnfnetlink-dev \
-    python3-pip
+    python3-pip \
+    iptables \
+    bridge-utils
 ```
 
 ## 2. Create and Activate Virtual Environment
